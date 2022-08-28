@@ -83,7 +83,7 @@
 
       #svg,
       #canvas {
-        width: 100% !important;
+        /* width: 100% !important; */
         height: auto;
       }
 
@@ -128,7 +128,13 @@
       <div class="flex-element">
         <h2>SVG</h2>
 
-        <svg id="svg" width="600" height="400" viewBox="0 0 600 400">
+        <svg
+          id="svg"
+          width="600"
+          height="400"
+          viewBox="0 0 600 400"
+          preserveAspectRatio="xMinYMin none"
+        >
           <rect
             class="hide-on-hover"
             width="600"
