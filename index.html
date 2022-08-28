@@ -20,8 +20,9 @@
         font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
           "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
           "Helvetica Neue", sans-serif;
+        color: #333;
         line-height: 1.6;
-        padding: 20px 2vw;
+        padding: 20px 2vw 100px 2vw;
         max-width: 1268px;
         margin: 0 auto;
       }
@@ -46,6 +47,11 @@
         text-align: center;
       }
 
+      .content {
+        max-width: 1000px;
+        margin: auto;
+      }
+
       .flex-art-container {
         display: flex;
         flex-wrap: wrap;
@@ -66,15 +72,9 @@
 
       .flex-text-container > div {
         padding: 0 20px;
-        width: 33.33%;
+        width: 50%;
         box-sizing: border-box;
         text-align: justify;
-      }
-
-      @media screen and (max-width: 1024px) {
-        .flex-text-container > div {
-          width: 50%;
-        }
       }
 
       @media screen and (max-width: 768px) {
@@ -85,8 +85,9 @@
 
       #svg,
       #canvas {
-        /* width: 100% !important; */
         height: auto;
+        border-radius: 5px;
+        width: 100% !important;
       }
 
       #svg .show-on-hover {
@@ -117,6 +118,35 @@
         to {
           transform: rotate(35deg);
         }
+      }
+
+      .center {
+        display: flex;
+        justify-content: center;
+      }
+
+      #show-docs-button {
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 20px;
+        margin: 30px auto 30px auto;
+        color: #666;
+        background-color: #fff;
+        border: none;
+        box-shadow: 0 0 6px 0 #aaa;
+        border-radius: 5px;
+        transition-duration: 0.1s;
+        cursor: pointer;
+      }
+
+      #show-docs-button:hover {
+        background-color: #eee;
+      }
+
+      #docs {
+        margin: auto;
+        text-align: justify;
       }
     </style>
   </head>
@@ -259,45 +289,133 @@
       </div>
     </div>
 
-    <div class="flex-text-container">
-      <div class="flex-element">
-        <h3>About the artist</h3>
+    <div class="content">
+      <div class="flex-text-container">
+        <div>
+          <h3>About the artist</h3>
 
-        <p>
-          Håvard's creator wants to remain anonymous to avoid getting unwanted
-          attention for <i>Håvard the Hover Man</i> and his other remarkable
-          creations. However, we can reveal that he is a student at NTNU
-          Gløshaugen and that he is very passionate about creating art using
-          crappy tools.
-        </p>
+          <p>
+            Håvard's creator wants to remain anonymous to avoid getting unwanted
+            attention for <i>Håvard the Hover Man</i> and his other remarkable
+            creations. However, we can reveal that he is a student at NTNU
+            Gløshaugen and that he is very passionate about creating art using
+            state-of-the-art art tools.
+          </p>
+        </div>
+
+        <div class="flex-element">
+          <h3>About Håvard</h3>
+          <p>
+            Håvard has been a legend in the stickman community for over two
+            weeks. His interests include standing, waving, shouting and being
+            hovered. He also follows a strict vegan diet and exercises regularly
+            to retain his skinny figure.
+          </p>
+        </div>
       </div>
+    </div>
 
-      <div class="flex-element">
-        <h3>About Håvard</h3>
-        <p>
-          Håvard has been a legend in the stickman community for over two weeks.
-          His interests include standing, waving, shouting and being hovered. He
-          also follows a strict vegan diet and exercises regularly to retain his
-          skinny figure.
-        </p>
-      </div>
+    <div class="center">
+      <button id="show-docs-button">Show documentation</button>
+    </div>
 
-      <div class="flex-element">
-        <h3>About art</h3>
-        <p>
-          The first pieces of art is as old as the world and predates the human
-          itself. Håvard the Hover Man is the pinnacle of art, and was made
-          possible thanks to state-of-the-art art technologies like Scalable
-          Vector Graphics.
-        </p>
+    <div id="docs" class="content">
+      <h2>Documentation</h2>
+
+      <p>
+        This website is the first project for the course IT2810 Web Development
+        at NTNU. The task was to implement simple web graphics using SVG and
+        HTML5 Canvas, including some interactivity and animation. I chose to
+        make a stickman that waves his arms when the user hovers over the image.
+        I first created this in SVG, and then recreated it in HTML5 Canvas.
+      </p>
+
+      <div class="flex-text-container">
+        <div class="flex-element">
+          <h3>Graphics</h3>
+          <p>
+            The SVG image was created from scratch using standard SVG elements
+            such as &lt;line&gt; and &lt;circle&gt;. Animation was done using
+            CSS, where you can specify a keyframe defining the start and end
+            values of the element you want to animate. I used the CSS property
+            <i>transform</i> to rotate the arms back and forth with an angle
+            between -35 and 35 degrees, creating the waving effect.
+          </p>
+
+          <p>
+            The Canvas image was made by placing a canvas element in the HTML,
+            and then drawing on it using native Javascript functions. Animation
+            was slightly more complicated with the canvas. I used Javascript's
+            <i>requestAnimationFrame</i> function, which allows me to re-draw
+            the canvas 60 times a second. A variable gradually transitioning
+            between values of -35 and 35 was used as the angle when drawing the
+            arms, enabling the waving animation. I also had to calculate how
+            much the angle would have to change in each frame in order to match
+            the animation speed with the SVG.
+          </p>
+        </div>
+        <div class="flex-element">
+          <h3>Page layout</h3>
+          <p>
+            The page layout is powered by CSS Flexbox, which is a set of CSS
+            properties for creating a flexible and responsive layout. I chose
+            Flexbox over CSS Grid because I have more experience with the
+            former, and Flexbox also has slightly better browser support. I also
+            did not have the need for a granular two-dimensional layout, for
+            which Grid is superior.
+          </p>
+
+          <p>
+            jQuery was used for a number of things in the script, such as
+            selecting elements in the DOM, checking if the canvas is hovered,
+            registering click listeners and showing/hiding the documentation
+            section you are reading right now.
+          </p>
+
+          <p>
+            Cross-browser was conducted using Chrome version 104 and Safari
+            version 15.6. I have assured that the layout looks identical in both
+            browsers and that user interaction works as expected. I have mostly
+            used W3Schools and MDN as references for SVG, HTML5 Canvas and
+            jQuery. StackOverflow has also been a very useful resource for more
+            specific problems. All code is written from scratch, and I have not
+            reused any code snippets.
+          </p>
+        </div>
       </div>
     </div>
 
     <script>
+      // Hide the docs section initially
+      $("#docs").hide();
+
+      // Click a button to toggle the visibility of the docs section
+      $("#show-docs-button").click(function () {
+        $("#docs").toggle(500);
+
+        if ($("#show-docs-button").text() === "Show documentation") {
+          $("#show-docs-button").text("Hide documentation");
+        } else {
+          $("#show-docs-button").text("Show documentation");
+        }
+
+        // Scroll to bottom
+        $("html, body").animate(
+          {
+            scrollTop: $(document).height(),
+          },
+          500
+        );
+      });
+
+      // Initialize the canvas
       const c = $("#canvas")[0];
       const ctx = c.getContext("2d");
 
+      // Number of degrees for the arms to rotate
       let deg = 0;
+
+      // Number of degrees for the angle to change in each frame
       let delta = 70 / 0.15 / 60;
 
       function drawCanvas() {
@@ -346,19 +464,18 @@
 
         // Mouth
         ctx.moveTo(265, 120);
-        if (!isHovered) {
+        if (isHovered) {
+          ctx.stroke();
+          ctx.lineWidth = 2;
+
+          ctx.moveTo(330, 120);
+          ctx.ellipse(300, 120, 30, 15, 0, 0, Math.PI * 2);
+        } else {
           ctx.lineTo(335, 120);
         }
 
         ctx.stroke();
-
         ctx.lineWidth = 2;
-
-        // Mouth
-        if (isHovered) {
-          ctx.moveTo(330, 120);
-          ctx.ellipse(300, 120, 30, 15, 0, 0, Math.PI * 2);
-        }
 
         // Left eye
         ctx.moveTo(290, 80);
@@ -374,8 +491,10 @@
 
         ctx.stroke();
 
+        // Update the angle for the arms
         deg += delta;
 
+        // Reverse animation direction when angle exceeds 35 degrees
         if (deg <= -35 || deg >= 35) {
           delta = -delta;
         }
@@ -383,6 +502,7 @@
         requestAnimationFrame(drawCanvas);
       }
 
+      // Start the animation
       requestAnimationFrame(drawCanvas);
     </script>
   </body>
