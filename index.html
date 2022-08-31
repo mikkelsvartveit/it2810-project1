@@ -6,150 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Håvard</title>
 
+    <!-- Load jQuery from CDN -->
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
 
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap");
-
-      body {
-        font-size: 16px;
-        font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-          "Helvetica Neue", sans-serif;
-        color: #333;
-        line-height: 1.6;
-        padding: 20px 2vw 100px 2vw;
-        max-width: 1268px;
-        margin: 0 auto;
-      }
-
-      h1 {
-        font-size: 48px;
-        font-weight: 300;
-        text-align: center;
-      }
-
-      h2 {
-        font-weight: 300;
-        text-align: center;
-      }
-
-      h3 {
-        font-weight: 600;
-      }
-
-      .ingress {
-        font-size: 18px;
-        text-align: center;
-      }
-
-      .content {
-        max-width: 1000px;
-        margin: auto;
-      }
-
-      .flex-art-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        margin: 0 -20px;
-      }
-
-      .flex-art-container > div {
-        padding: 20px;
-      }
-
-      .flex-text-container {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 20px -20px 0 -20px;
-      }
-
-      .flex-text-container > div {
-        padding: 0 20px;
-        width: 50%;
-        box-sizing: border-box;
-        text-align: justify;
-      }
-
-      @media screen and (max-width: 768px) {
-        .flex-text-container > div {
-          width: 100%;
-        }
-      }
-
-      #svg,
-      #canvas {
-        height: auto;
-        border-radius: 5px;
-        max-width: 100% !important;
-      }
-
-      #svg .show-on-hover {
-        opacity: 0;
-      }
-
-      #svg:hover .show-on-hover {
-        opacity: 1;
-      }
-
-      #svg .hide-on-hover {
-        opacity: 1;
-      }
-
-      #svg:hover .hide-on-hover {
-        opacity: 0;
-      }
-
-      #animate-arm {
-        animation: armAnimation 0.15s linear infinite alternate;
-        transform-origin: 50% 45%;
-      }
-
-      @keyframes armAnimation {
-        from {
-          transform: rotate(-35deg);
-        }
-        to {
-          transform: rotate(35deg);
-        }
-      }
-
-      .center {
-        display: flex;
-        justify-content: center;
-      }
-
-      #show-docs-button {
-        font-size: 16px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        padding: 20px;
-        margin: 30px auto 30px auto;
-        color: #666;
-        background-color: #fff;
-        border: none;
-        box-shadow: 0 0 6px 0 #aaa;
-        border-radius: 5px;
-        transition-duration: 0.1s;
-        cursor: pointer;
-      }
-
-      #show-docs-button:hover {
-        background-color: #eee;
-      }
-
-      #docs {
-        margin: auto;
-        text-align: justify;
-      }
-    </style>
+    <!-- Import stylesheet -->
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <h1>Håvard the Hover Man</h1>
     <p class="ingress">
@@ -157,7 +24,7 @@
     </p>
 
     <div class="flex-art-container">
-      <div class="flex-element">
+      <div>
         <h2>SVG</h2>
 
         <svg
@@ -446,151 +313,6 @@
       </div>
     </div>
 
-    <script>
-      // Hide the docs section initially
-      $("#docs").hide();
-
-      // Click a button to toggle the visibility of the docs section
-      $("#show-docs-button").click(function () {
-        $("#docs").toggle(500);
-
-        if ($("#show-docs-button").text() === "Show documentation") {
-          $("#show-docs-button").text("Hide documentation");
-        } else {
-          $("#show-docs-button").text("Show documentation");
-        }
-
-        // Scroll to bottom
-        $("html, body").animate(
-          {
-            scrollTop: $(document).height(),
-          },
-          500
-        );
-      });
-
-      // Initialize the canvas
-      const c = $("#canvas")[0];
-      const ctx = c.getContext("2d");
-
-      // Number of degrees for the arms to rotate
-      let deg = 0;
-
-      // Number of degrees for the angle to change in each frame
-      let delta = 70 / 0.15 / 60;
-
-      function drawCanvas() {
-        ctx.clearRect(0, 0, c.width, c.height);
-        ctx.beginPath();
-
-        const isHovered = $("#canvas").is(":hover");
-
-        ctx.fillStyle = isHovered ? "#c2ffca" : "#ffc2c2";
-        ctx.fillRect(0, 0, 600, 400);
-
-        ctx.lineWidth = 3;
-
-        // Body
-        ctx.moveTo(240, 380);
-        ctx.lineTo(300, 280);
-        ctx.moveTo(360, 380);
-        ctx.lineTo(300, 280);
-        ctx.moveTo(300, 280);
-        ctx.lineTo(300, 160);
-
-        // Arms
-        if (isHovered) {
-          ctx.stroke();
-          ctx.save();
-
-          ctx.translate(300, 180);
-          ctx.rotate((deg * Math.PI) / 180);
-          ctx.translate(-300, -180);
-
-          ctx.moveTo(190, 180);
-          ctx.lineTo(410, 180);
-
-          ctx.stroke();
-          ctx.restore();
-        } else {
-          ctx.moveTo(300, 180);
-          ctx.lineTo(240, 260);
-          ctx.moveTo(300, 180);
-          ctx.lineTo(360, 260);
-        }
-
-        // Head
-        ctx.moveTo(360, 100);
-        ctx.arc(300, 100, 60, 0, Math.PI * 2, true);
-
-        // Mouth
-        ctx.moveTo(265, 120);
-        if (isHovered) {
-          ctx.stroke();
-          ctx.lineWidth = 2;
-
-          ctx.moveTo(330, 120);
-          ctx.ellipse(300, 120, 30, 15, 0, 0, Math.PI * 2);
-        } else {
-          ctx.lineTo(335, 120);
-        }
-
-        // Tears
-        if (!isHovered) {
-          ctx.stroke();
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.strokeStyle = "blue";
-
-          ctx.moveTo(275, 95);
-          ctx.arc(275, 95, 1, 0, Math.PI * 2, true);
-          ctx.moveTo(274, 102);
-          ctx.arc(274, 102, 1, 0, Math.PI * 2, true);
-          ctx.moveTo(273, 109);
-          ctx.arc(273, 109, 1, 0, Math.PI * 2, true);
-
-          ctx.moveTo(325, 95);
-          ctx.arc(325, 95, 1, 0, Math.PI * 2, true);
-          ctx.moveTo(326, 102);
-          ctx.arc(326, 102, 1, 0, Math.PI * 2, true);
-          ctx.moveTo(327, 109);
-          ctx.arc(327, 109, 1, 0, Math.PI * 2, true);
-
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.strokeStyle = "black";
-        }
-
-        ctx.stroke();
-        ctx.lineWidth = 2;
-
-        // Left eye
-        ctx.moveTo(290, 80);
-        ctx.arc(280, 80, 10, 0, Math.PI * 2, true);
-        ctx.moveTo(280, 80);
-        ctx.arc(280, 80, 2, 0, Math.PI * 2, true);
-
-        // Right eye
-        ctx.moveTo(330, 80);
-        ctx.arc(320, 80, 10, 0, Math.PI * 2, true);
-        ctx.moveTo(320, 80);
-        ctx.arc(320, 80, 2, 0, Math.PI * 2, true);
-
-        ctx.stroke();
-
-        // Update the angle for the arms
-        deg += delta;
-
-        // Reverse animation direction when angle exceeds 35 degrees
-        if (deg <= -35 || deg >= 35) {
-          delta = -delta;
-        }
-
-        requestAnimationFrame(drawCanvas);
-      }
-
-      // Start the animation
-      requestAnimationFrame(drawCanvas);
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
