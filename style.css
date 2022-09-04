@@ -81,6 +81,7 @@ h3 {
   height: auto;
   border-radius: 5px;
   max-width: 100% !important;
+  box-shadow: 0 0 12px 0 #000;
 }
 
 #svg .show-on-hover {
