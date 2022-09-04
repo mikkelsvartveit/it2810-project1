@@ -12,10 +12,10 @@ $("#show-docs-button").click(function () {
 
     $("#show-docs-button").text("Hide documentation");
 
-    // Scroll to bottom for a nicer effect
-    $("html, body").animate(
+    // Scroll down bottom for a nicer effect
+    $([document.documentElement, document.body]).animate(
       {
-        scrollTop: $(document).height(),
+        scrollTop: $("#show-docs-button").offset().top,
       },
       500
     );
